@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Tatsiana Zhukavets · CV</title>
+<style>
+  :root{
+    --bg:#181633; --bg-deep:#221e48; --bg-alt:#1d1a3c;
+    --ink:#ece9ff; --ink-soft:#c9c3ec; --muted:#948dbb;
+    --gold:#f5c15c; --gold-deep:#c9922c; --accent-soft:#ffd98a;
+    --cyan:#34e5ff; --violet:#a78bfa;
+    --card-a:rgba(42,38,88,.96); --card-b:rgba(33,29,70,.96);
+    --field-border:rgba(255,255,255,.12);
+    --line:rgba(245,193,92,.20); --line-soft:rgba(167,139,250,.22);
+    --glow:radial-gradient(1200px 600px at 12% -8%, rgba(124,58,237,.28), transparent 60%),
+           radial-gradient(900px 500px at 100% 0%, rgba(70,110,255,.14), transparent 55%);
+    --shadow:0 20px 50px -30px rgba(0,0,0,.7);
+    --shine:linear-gradient(100deg,#c9922c,#f5c15c,#fff3d6,#ffe9b0,#f5c15c,#c9922c);
+  }
+  body.light{
+    --bg:#eadfc4; --bg-deep:#f4ead2; --bg-alt:#e0d1ac;
+    --ink:#3a2c12; --ink-soft:#6b5834; --muted:#94805a;
+    --gold:#9c6b10; --gold-deep:#75500a; --accent-soft:#b98a2a;
+    --cyan:#0e7d8f; --violet:#7d54c9;
+    --card-a:rgba(255,251,243,.85); --card-b:rgba(244,234,210,.85);
+    --field-border:rgba(124,84,12,.28);
+    --line:rgba(124,84,12,.26); --line-soft:rgba(124,84,12,.15);
+    --glow:radial-gradient(1100px 560px at 12% -8%, rgba(217,180,94,.4), transparent 60%),
+           radial-gradient(900px 500px at 100% 0%, rgba(176,138,224,.14), transparent 55%);
+    --shadow:0 20px 44px -28px rgba(124,84,12,.5);
+    --shine:linear-gradient(100deg,#5f470c,#9c6b10,#c99a34,#e6cf7a,#c99a34,#9c6b10,#5f470c);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0; background:var(--glow), var(--bg); color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    line-height:1.5; -webkit-font-smoothing:antialiased; transition:background .4s,color .4s}
+  ::selection{background:rgba(245,193,92,.28)}
+  #starfield{position:fixed; inset:0; z-index:-1; pointer-events:none; opacity:1; transition:opacity .5s}
+  body.light #starfield{opacity:0}
+
+  #controls{position:fixed; top:14px; right:14px; z-index:40; display:flex; gap:6px; align-items:center}
+  #controls .grp{display:flex; gap:2px; background:var(--card-a); border:1px solid var(--line-soft);
+    border-radius:999px; padding:3px; backdrop-filter:blur(10px); box-shadow:var(--shadow)}
+  .langbtn{font:inherit; font-size:.74rem; font-weight:600; letter-spacing:.03em; color:var(--muted);
+    background:none; border:none; cursor:pointer; padding:5px 10px; border-radius:999px; transition:.2s}
+  .langbtn:hover{color:var(--ink)} .langbtn.active{background:linear-gradient(180deg,var(--accent-soft),var(--gold)); color:#1a1206}
+  #theme-btn{font-size:1rem; width:34px; height:34px; border-radius:999px; cursor:pointer; line-height:1; color:var(--ink);
+    background:var(--card-a); border:1px solid var(--line-soft); backdrop-filter:blur(10px); box-shadow:var(--shadow); transition:.2s}
+  #theme-btn:hover{border-color:var(--gold)}
+
+  .sheet{max-width:860px; margin:0 auto; padding:52px 24px 70px}
+
+  /* hero */
+  .badge{display:inline-block; font-size:.68rem; letter-spacing:.28em; text-transform:uppercase; color:var(--gold);
+    border:1px solid var(--line); border-radius:999px; padding:6px 15px; margin-bottom:20px}
+  h1{font-family:Georgia,"Times New Roman",serif; font-weight:500; font-size:clamp(2.4rem,7vw,4rem); margin:0 0 .12em;
+    letter-spacing:.01em; background:var(--shine); background-size:200% auto;
+    -webkit-background-clip:text; background-clip:text; color:transparent; animation:shine 6s linear infinite}
+  @keyframes shine{to{background-position:200% center}}
+  @media (prefers-reduced-motion: reduce){ h1,.stat .n{animation:none} }
+  .tagline{font-size:clamp(1rem,2.6vw,1.28rem); color:var(--ink-soft); font-weight:500; max-width:40ch}
+  .contact{display:flex; flex-wrap:wrap; gap:8px 18px; margin-top:16px; font-size:.9rem; color:var(--muted)}
+  .contact a{color:var(--gold); text-decoration:none} .contact a:hover{text-decoration:underline}
+  .contact .sep{color:var(--line)}
+
+  /* stat strip */
+  .stats{display:grid; grid-template-columns:repeat(6,1fr); gap:12px; margin:34px 0 30px}
+  .stat{background:linear-gradient(180deg,var(--card-a),var(--card-b)); border:1px solid var(--line-soft);
+    border-radius:14px; padding:16px 12px; text-align:center; box-shadow:var(--shadow)}
+  .stat .n{font-family:Georgia,serif; font-size:1.7rem; font-weight:600; line-height:1;
+    background:var(--shine); background-size:200% auto; -webkit-background-clip:text; background-clip:text; color:transparent; animation:shine 6s linear infinite}
+  .stat .n .u{font-size:1rem} .stat .c{font-size:.68rem; color:var(--muted); margin-top:7px; line-height:1.35}
+
+  .pitch{font-size:1.08rem; line-height:1.62; color:var(--ink); border-left:3px solid var(--gold);
+    padding:6px 0 6px 20px; margin:8px 0 30px; font-family:Georgia,"Times New Roman",serif}
+  .pitch b{color:var(--gold); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif}
+  .cta-lead{text-align:center; font-family:Georgia,serif; font-style:italic; color:var(--ink-soft); font-size:1.08rem; margin:34px 0 -4px}
+
+  .cols{display:grid; grid-template-columns:1.55fr 1fr; gap:22px}
+  .block{background:linear-gradient(180deg,var(--card-a),var(--card-b)); border:1px solid var(--line-soft);
+    border-radius:16px; padding:22px 22px; box-shadow:var(--shadow)}
+  .block + .block{margin-top:18px}
+  h3{font-size:.72rem; letter-spacing:.2em; text-transform:uppercase; color:var(--gold); margin:0 0 16px; font-weight:700}
+
+  .job{padding-bottom:16px; margin-bottom:16px; border-bottom:1px solid var(--line-soft)}
+  .job:last-child{padding-bottom:0; margin-bottom:0; border-bottom:none}
+  .job .role{font-weight:600; font-size:1.02rem; color:var(--ink)}
+  .job .org{font-size:.86rem; color:var(--ink-soft); margin-top:2px}
+  .job .org .when{color:var(--muted)}
+  .job .did{font-size:.9rem; color:var(--ink-soft); margin-top:8px}
+  .job .did .hl{color:var(--gold); font-weight:600}
+
+  .taglist{display:flex; flex-wrap:wrap; gap:7px}
+  .pill{font-size:.8rem; color:var(--ink-soft); background:color-mix(in srgb,var(--gold) 9%, transparent);
+    border:1px solid var(--line); border-radius:999px; padding:5px 11px}
+  .lang-row{display:flex; justify-content:space-between; font-size:.9rem; padding:6px 0; border-bottom:1px solid var(--line-soft)}
+  .lang-row:last-child{border-bottom:none} .lang-row b{color:var(--ink)} .lang-row span{color:var(--muted)}
+  .mini{font-size:.88rem; color:var(--ink-soft); line-height:1.6}
+
+  .cta{display:flex; flex-wrap:wrap; gap:12px; justify-content:center; margin-top:34px}
+  .cta a{font-size:.96rem; font-weight:600; text-decoration:none; padding:13px 30px; border-radius:999px; transition:transform .15s, box-shadow .15s}
+  .cta a:hover{transform:translateY(-2px)}
+  .cta .primary{color:#1a1206; background:linear-gradient(180deg,var(--accent-soft),var(--gold)); box-shadow:0 14px 30px -12px rgba(245,193,92,.55)}
+  .cta .ghost{color:var(--gold); border:1px solid var(--line)}
+
+  footer{text-align:center; color:var(--muted); font-size:.78rem; margin-top:40px}
+  footer .name{color:var(--gold); letter-spacing:.05em}
+
+  @media(max-width:720px){
+    .stats{grid-template-columns:repeat(3,1fr)}
+    .cols{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+<canvas id="starfield" aria-hidden="true"></canvas>
+<div id="controls">
+  <div class="grp">
+    <button class="langbtn" data-lang="ru">RU</button>
+    <button class="langbtn active" data-lang="en">EN</button>
+    <button class="langbtn" data-lang="pl">PL</button>
+  </div>
+  <button id="theme-btn" title="Light theme">☀</button>
+</div>
+
+<div class="sheet">
+  <span class="badge" data-i18n="badge"></span>
+  <h1>Tatsiana Zhukavets</h1>
+  <p class="tagline" data-i18n="tagline"></p>
+  <div class="contact">
+    <span data-i18n="loc"></span><span class="sep">·</span>
+    <a href="mailto:zhukavetst@gmail.com">zhukavetst@gmail.com</a><span class="sep">·</span>
+    <a href="https://www.linkedin.com/in/tatsiana-zhukavets" target="_blank" rel="noopener">LinkedIn</a><span class="sep">·</span>
+    <span>RU · EN B2/C1 · PL B2</span>
+    <!-- добавь телефон здесь, если захочешь: <span class="sep">·</span><span>+48 ...</span> -->
+  </div>
+
+  <div class="stats">
+    <div class="stat"><div class="n">3</div><div class="c" data-i18n="st1"></div></div>
+    <div class="stat"><div class="n">17</div><div class="c" data-i18n="st2"></div></div>
+    <div class="stat"><div class="n">2,500<span class="u">+</span></div><div class="c" data-i18n="st3"></div></div>
+    <div class="stat"><div class="n">8</div><div class="c" data-i18n="st4"></div></div>
+    <div class="stat"><div class="n">50<span class="u">+</span></div><div class="c" data-i18n="st5"></div></div>
+    <div class="stat"><div class="n">4<span class="u" data-i18n="st6u"></span></div><div class="c" data-i18n="st6"></div></div>
+  </div>
+
+  <p class="pitch" data-i18n="pitch"></p>
+
+  <div class="cols">
+    <div>
+      <div class="block">
+        <h3 data-i18n="h_exp"></h3>
+        <div class="job">
+          <div class="role" data-i18n="j1r"></div>
+          <div class="org" data-i18n="j1o"></div>
+          <div class="did" data-i18n="j1d"></div>
+        </div>
+        <div class="job">
+          <div class="role" data-i18n="j2r"></div>
+          <div class="org" data-i18n="j2o"></div>
+          <div class="did" data-i18n="j2d"></div>
+        </div>
+        <div class="job">
+          <div class="role" data-i18n="j3r"></div>
+          <div class="org" data-i18n="j3o"></div>
+          <div class="did" data-i18n="j3d"></div>
+        </div>
+        <div class="job">
+          <div class="role" data-i18n="j4r"></div>
+          <div class="org" data-i18n="j4o"></div>
+          <div class="did" data-i18n="j4d"></div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="block">
+        <h3 data-i18n="h_skills"></h3>
+        <div class="taglist" id="skills"></div>
+      </div>
+      <div class="block">
+        <h3 data-i18n="h_ai"></h3>
+        <p class="mini" data-i18n="ai_body"></p>
+      </div>
+      <div class="block">
+        <h3 data-i18n="h_cert"></h3>
+        <p class="mini" data-i18n="cert_body"></p>
+      </div>
+      <div class="block">
+        <h3 data-i18n="h_lang"></h3>
+        <div class="lang-row"><b data-i18n="l_ru"></b><span data-i18n="l_ru_lv"></span></div>
+        <div class="lang-row"><b data-i18n="l_en"></b><span>B2 / C1</span></div>
+        <div class="lang-row"><b data-i18n="l_pl"></b><span>B2</span></div>
+      </div>
+    </div>
+  </div>
+
+  <p class="cta-lead" data-i18n="cta_lead"></p>
+  <div class="cta">
+    <a class="primary" href="https://intlady95.github.io/cv" target="_blank" rel="noopener" data-i18n="cta_full"></a>
+    <a class="ghost" id="mail-btn" href="mailto:zhukavetst@gmail.com" data-i18n="cta_talk"></a>
+  </div>
+
+  <footer><span class="name">TATSIANA ZHUKAVETS</span> · Product Owner &amp; Project Manager · <span data-i18n="foot"></span></footer>
+</div>
+
+<script>
+var SKILLS = ["Product Ownership","Project Management","AI Tools","Prompt Engineering","Team Leadership","Stakeholder Management","Content Strategy","Quality Assurance","Digital Marketing","Cross-cultural Communication"];
+
+var T = {
+ en:{
+  badge:"60-second CV",
+  tagline:"Product Owner & Project Manager · People & Communication Lead · I build products with AI.",
+  loc:"Kraków, Poland",
+  st1:"products of my own in build now",
+  st2:"person team I built & led",
+  st3:"students at my Rich Mind center",
+  st4:"program verticals in 3 years",
+  st5:"certifications since 2024",
+  st6:"years teaching English, measurable results", st6u:" yrs",
+  pitch:"I build products through <b>people, process discipline, and AI</b>. My foundation is a founder's — I grew an education business from zero to a <b>17-person team</b> and <b>2,500+ students</b>, carried it through COVID, and handed it over cleanly. Today I'm building <b>three products of my own</b>, with AI as my working team — and I bring that same warmth, structure, and drive to everything I ship.",
+  cta_lead:"Let's build something good together.",
+  mail_subj:"Hello Tatsiana — let's talk",
+  mail_body:"Hi Tatsiana,\n\nI came across your 60-second CV and portfolio — really impressive.\n\nI'd like to talk about:\n— \n\nA bit about me / my company:\n— \n\nBest way to reach me:\n— \n\nBest regards,\n",
+  h_exp:"Experience",
+  j1r:"Founder & Product Owner", j1o:"Independent · 2024 – now · Kraków",
+  j1d:"Building <span class='hl'>3 products</span> to launch: an <b>AI consultation platform</b> (I own the product & its multilingual content), an <b>online language academy</b> — 360 lessons, live, AI pipeline + multi-stage QA — and a <b>family medicine-cabinet app</b> (PL/CZ/ES market research).",
+  j2r:"Founder & CEO", j2o:"Rich Mind educational center · 2019 – 2022 · Pinsk, Belarus",
+  j2d:"Built from zero to <span class='hl'>2,500+ students</span>, <span class='hl'>8 verticals</span> and a <span class='hl'>17-person team</span> in 3 years; 40–60% retention. Exited via a structured handover to a partner.",
+  j3r:"People Operations", j3o:"Polish company · 2024 · Kraków",
+  j3d:"Led cross-functional projects, designed training programs, coordinated stakeholders across multicultural teams.",
+  j4r:"English Tutor", j4o:"Joy Republic · Rich Mind · 2018 – 2022",
+  j4d:"Prepared students to top Olympiad placements; trained a medic from zero to <span class='hl'>86%</span> on a professional English exam.",
+  h_skills:"Core skills",
+  h_ai:"AI toolkit",
+  ai_body:"AI is my everyday working tool, not an experiment. I work in Claude Code and Codex, set up my own AI helpers for my tasks (automating the routine), and know how to get precise, reliable results from AI — from idea to a working prototype.",
+  h_cert:"Certifications",
+  cert_body:"Google Project Management · Google Digital Marketing & E-commerce · Microsoft Career Essentials · a series of AI courses.",
+  h_lang:"Languages", l_ru:"Russian", l_ru_lv:"Native", l_en:"English", l_pl:"Polish",
+  cta_full:"Full portfolio →", cta_talk:"Let's talk →",
+  foot:"read in 60 seconds"
+ },
+ ru:{
+  badge:"CV на 60 секунд",
+  tagline:"Product Owner и Project Manager · People & Communication Lead · Строю продукты с AI.",
+  loc:"Краков, Польша",
+  st1:"своих продукта в разработке сейчас",
+  st2:"человек в команде, которую я построила",
+  st3:"учеников в моём центре Rich Mind",
+  st4:"вертикали за 3 года",
+  st5:"сертификатов с 2024 года",
+  st6:"года преподавания с измеримым результатом", st6u:" г.",
+  pitch:"Я создаю продукты через <b>людей, дисциплину процессов и AI</b>. Моя основа — предпринимательская: я вырастила образовательный бизнес с нуля до <b>команды из 17 человек</b> и <b>2 500+ учеников</b>, провела его через COVID и передала партнёру без потерь. Сегодня я строю <b>три собственных продукта</b>, где AI — моя рабочая команда, и вношу то же тепло, структуру и драйв во всё, что делаю.",
+  cta_lead:"Давайте создадим что-то хорошее вместе.",
+  mail_subj:"Здравствуйте, Татьяна — давайте пообщаемся",
+  mail_body:"Здравствуйте, Татьяна!\n\nЯ увидел(а) ваше CV на 60 секунд и портфолио — очень впечатляет.\n\nХочу обсудить:\n— \n\nНемного обо мне / моей компании:\n— \n\nКак со мной связаться:\n— \n\nС уважением,\n",
+  h_exp:"Опыт",
+  j1r:"Основатель и Product Owner", j1o:"Независимо · 2024 – сейчас · Краков",
+  j1d:"Строю <span class='hl'>3 продукта</span> к запуску: <b>AI-платформа консультаций</b> (владею продуктом и его мультиязычным контентом), <b>онлайн-академия языков</b> — 360 уроков, уже работает, AI-пайплайн + многоступенчатый QA — и <b>приложение для домашней аптечки</b> (исследование рынков PL/CZ/ES).",
+  j2r:"Основатель и CEO", j2o:"Образовательный центр Rich Mind · 2019 – 2022 · Пинск, Беларусь",
+  j2d:"С нуля до <span class='hl'>2 500+ учеников</span>, <span class='hl'>8 вертикалей</span> и <span class='hl'>команды из 17 человек</span> за 3 года; удержание 40–60%. Вышла через структурированную передачу партнёру.",
+  j3r:"People Operations", j3o:"Польская компания · 2024 · Краков",
+  j3d:"Вела кросс-функциональные проекты, разрабатывала программы обучения, координировала стейкхолдеров в мультикультурных командах.",
+  j4r:"Преподаватель английского", j4o:"Joy Republic · Rich Mind · 2018 – 2022",
+  j4d:"Готовила учеников к призовым местам на олимпиадах; вывела медработника с нуля до <span class='hl'>86%</span> на профессиональном экзамене по английскому.",
+  h_skills:"Ключевые навыки",
+  h_ai:"AI-инструменты",
+  ai_body:"AI — мой ежедневный рабочий инструмент, а не эксперимент. Работаю в Claude Code и Codex, настроила собственные AI-помощники под свои задачи (автоматизируют рутину) и умею добиваться от AI точного, надёжного результата — от идеи до готового прототипа.",
+  h_cert:"Сертификаты",
+  cert_body:"Google Project Management · Google Digital Marketing & E-commerce · Microsoft Career Essentials · серия AI-курсов.",
+  h_lang:"Языки", l_ru:"Русский", l_ru_lv:"Родной", l_en:"Английский", l_pl:"Польский",
+  cta_full:"Полное портфолио →", cta_talk:"Связаться →",
+  foot:"читается за 60 секунд"
+ },
+ pl:{
+  badge:"CV w 60 sekund",
+  tagline:"Product Owner i Project Manager · People & Communication Lead · Buduję produkty z AI.",
+  loc:"Kraków, Polska",
+  st1:"własne produkty w budowie teraz",
+  st2:"osób w zespole, który zbudowałam",
+  st3:"uczniów w moim centrum Rich Mind",
+  st4:"wertykały w 3 lata",
+  st5:"certyfikatów od 2024 roku",
+  st6:"lata nauczania z mierzalnym efektem", st6u:" lata",
+  pitch:"Tworzę produkty przez <b>ludzi, dyscyplinę procesów i AI</b>. Mój fundament jest przedsiębiorczy — rozwinęłam biznes edukacyjny od zera do <b>zespołu 17 osób</b> i <b>2 500+ uczniów</b>, przeprowadziłam go przez COVID i przekazałam bez strat. Dziś buduję <b>trzy własne produkty</b>, gdzie AI jest moim zespołem — i wnoszę to samo ciepło, strukturę i energię we wszystko, co robię.",
+  cta_lead:"Zbudujmy razem coś dobrego.",
+  mail_subj:"Dzień dobry, Tatiano — porozmawiajmy",
+  mail_body:"Dzień dobry, Tatiano!\n\nTrafiłem(-am) na Twoje CV w 60 sekund i portfolio — robią wrażenie.\n\nChciał(a)bym porozmawiać o:\n— \n\nKilka słów o mnie / mojej firmie:\n— \n\nJak się ze mną skontaktować:\n— \n\nPozdrawiam,\n",
+  h_exp:"Doświadczenie",
+  j1r:"Założycielka i Product Owner", j1o:"Niezależnie · 2024 – teraz · Kraków",
+  j1d:"Buduję <span class='hl'>3 produkty</span> do startu: <b>platforma konsultacji AI</b> (jestem właścicielką produktu i jego wielojęzycznej treści), <b>internetowa akademia języków</b> — 360 lekcji, działa, pipeline AI + wieloetapowe QA — oraz <b>aplikacja domowej apteczki</b> (badanie rynków PL/CZ/ES).",
+  j2r:"Założycielka i CEO", j2o:"Centrum edukacyjne Rich Mind · 2019 – 2022 · Pińsk, Białoruś",
+  j2d:"Od zera do <span class='hl'>2 500+ uczniów</span>, <span class='hl'>8 wertykałów</span> i <span class='hl'>zespołu 17 osób</span> w 3 lata; retencja 40–60%. Wyjście przez uporządkowane przekazanie partnerowi.",
+  j3r:"People Operations", j3o:"Polska firma · 2024 · Kraków",
+  j3d:"Prowadziłam projekty międzyfunkcyjne, projektowałam programy szkoleń, koordynowałam interesariuszy w wielokulturowych zespołach.",
+  j4r:"Lektorka angielskiego", j4o:"Joy Republic · Rich Mind · 2018 – 2022",
+  j4d:"Przygotowałam uczniów do czołowych miejsc na olimpiadach; wyszkoliłam medyka od zera do <span class='hl'>86%</span> na zawodowym egzaminie z angielskiego.",
+  h_skills:"Kluczowe umiejętności",
+  h_ai:"Narzędzia AI",
+  ai_body:"AI to moje codzienne narzędzie pracy, nie eksperyment. Pracuję w Claude Code i Codex, skonfigurowałam własne pomoce AI pod swoje zadania (automatyzują rutynę) i potrafię uzyskiwać z AI precyzyjne, wiarygodne wyniki — od pomysłu po działający prototyp.",
+  h_cert:"Certyfikaty",
+  cert_body:"Google Project Management · Google Digital Marketing & E-commerce · Microsoft Career Essentials · seria kursów AI.",
+  h_lang:"Języki", l_ru:"Rosyjski", l_ru_lv:"Ojczysty", l_en:"Angielski", l_pl:"Polski",
+  cta_full:"Pełne portfolio →", cta_talk:"Porozmawiajmy →",
+  foot:"do przeczytania w 60 sekund"
+ }
+};
+
+var lang='en';
+function applyLang(l){
+  lang = T[l]?l:'en';
+  document.documentElement.lang = lang;
+  var d = T[lang];
+  document.querySelectorAll('[data-i18n]').forEach(function(el){
+    var v=d[el.getAttribute('data-i18n')]; if(v!=null) el.innerHTML=v;
+  });
+  document.querySelectorAll('.langbtn').forEach(function(b){ b.classList.toggle('active', b.getAttribute('data-lang')===lang); });
+  // pre-filled email template for the "Let's talk" button
+  var mb = document.getElementById('mail-btn');
+  if(mb) mb.setAttribute('href', 'mailto:zhukavetst@gmail.com?subject=' + encodeURIComponent(d.mail_subj) + '&body=' + encodeURIComponent(d.mail_body));
+  try{ localStorage.setItem('cv-lang', lang); }catch(e){}
+}
+document.querySelectorAll('.langbtn').forEach(function(b){ b.addEventListener('click', function(){ applyLang(b.getAttribute('data-lang')); }); });
+
+var themeBtn=document.getElementById('theme-btn');
+function applyTheme(t){
+  var on=t==='light'; document.body.classList.toggle('light',on);
+  themeBtn.textContent=on?'🌙':'☀'; themeBtn.title=on?'Dark theme':'Light theme';
+  try{ localStorage.setItem('cv-theme',t); }catch(e){}
+}
+themeBtn.addEventListener('click', function(){ applyTheme(document.body.classList.contains('light')?'dark':'light'); });
+
+// skills pills
+(function(){ var box=document.getElementById('skills');
+  SKILLS.forEach(function(s){ var el=document.createElement('span'); el.className='pill'; el.textContent=s; box.appendChild(el); });
+})();
+
+(function init(){
+  var st=null, sl=null; try{ st=localStorage.getItem('cv-theme'); sl=localStorage.getItem('cv-lang'); }catch(e){}
+  applyTheme(st==='light'?'light':'dark');
+  applyLang(sl&&T[sl]?sl:'en');
+})();
+</script>
+
+<script>
+/* ✦ Static golden starry sky — drawn once, no animation (dark theme only) */
+(function(){
+  var c = document.getElementById('starfield'); if(!c) return;
+  var ctx = c.getContext('2d');
+  var DPR = Math.min(window.devicePixelRatio || 1, 2), W = 0, H = 0;
+  function draw(){
+    W = window.innerWidth; H = window.innerHeight;
+    c.width = W*DPR; c.height = H*DPR; c.style.width = W+'px'; c.style.height = H+'px';
+    ctx.setTransform(DPR,0,0,DPR,0,0);
+    ctx.clearRect(0,0,W,H);
+    var n = Math.round(W*H/2500);
+    for(var i=0;i<n;i++){
+      var x = Math.random()*W, y = Math.random()*H, t = Math.random();
+      var rad = t<0.80 ? Math.random()*0.7+0.35 : (t<0.96 ? Math.random()*0.6+0.9 : Math.random()*0.7+1.5);
+      var op  = t<0.80 ? Math.random()*0.30+0.12 : (t<0.96 ? Math.random()*0.30+0.38 : Math.random()*0.25+0.6);
+      ctx.beginPath(); ctx.arc(x, y, rad, 0, 6.2832);
+      ctx.fillStyle = (Math.random()<0.14) ? 'rgba(255,245,220,'+op+')' : 'rgba(244,200,108,'+op+')';
+      ctx.fill();
+    }
+  }
+  draw(); window.addEventListener('resize', draw);
+})();
+</script>
+</body>
+</html>
