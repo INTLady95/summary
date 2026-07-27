@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tatsiana Zhukavets — CV</title>
+<style>
+  @page { size: A4; margin: 6.5mm 12mm; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-size: 9.5pt; line-height: 1.45; color: #21201d;
+  }
+  a { color: #21201d; text-decoration: none; }
+  .contact a { color: #8a6d1d; }
+
+  /* ── header ── */
+  .head { text-align: center; padding-bottom: 8px; border-bottom: 2.5px solid #b3922e; }
+  h1 {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 23pt; font-weight: 700; letter-spacing: 2.5px; color: #21201d;
+  }
+  .headline {
+    font-size: 11pt; font-weight: 600; color: #8a6d1d;
+    letter-spacing: 0.3px; margin-top: 3px;
+  }
+  .contact { font-size: 8.6pt; color: #555; margin-top: 6px; line-height: 1.55; }
+
+  /* ── key numbers strip ── */
+  .strip {
+    display: flex; justify-content: space-between; text-align: center;
+    margin: 9px 0 4px; padding: 7px 4px;
+    border-bottom: 1px solid #e3d7ae;
+  }
+  .strip .kn { flex: 1; }
+  .strip .kn b {
+    display: block; font-family: Georgia, serif;
+    font-size: 13.5pt; color: #8a6d1d; line-height: 1.1;
+  }
+  .strip .kn span {
+    display: block; font-size: 7.2pt; color: #666;
+    text-transform: uppercase; letter-spacing: 0.4px; margin-top: 2px;
+  }
+
+  /* ── sections ── */
+  h2 {
+    font-size: 10pt; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 1.6px; color: #8a6d1d;
+    margin: 12px 0 6px; padding-bottom: 2px;
+    border-bottom: 1px solid #e3d7ae;
+  }
+  .job { margin-bottom: 10px; page-break-inside: avoid; }
+  .job-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 3px; }
+  .job-role {
+    display: inline-block; font-weight: 700; font-size: 9.7pt; color: #21201d;
+    border: 1px solid #cbb268; background: #fdf9ee;
+    border-radius: 4px; padding: 1.5px 9px; margin-right: 7px;
+  }
+  .job-org  { font-weight: 400; color: #6b5a28; font-size: 9.2pt; }
+  .job-dates {
+    font-size: 8.4pt; color: #777; white-space: nowrap; padding-left: 12px;
+    font-style: italic;
+  }
+  ul { margin: 1px 0 0 15px; }
+  li { margin-bottom: 2.2px; color: #333; }
+  li b, p b { color: #21201d; }
+  p.summary { margin-top: 4px; color: #333; }
+  .auth {
+    background: #faf6e8; border: 1px solid #e3d7ae; border-left: 3px solid #b3922e;
+    padding: 6px 10px; margin-top: 7px; font-size: 9pt; color: #444;
+    border-radius: 2px;
+  }
+  .edu-line { margin-bottom: 3px; color: #333; }
+  .skills { margin-top: 2px; color: #333; line-height: 1.6; }
+  .langs { color: #333; }
+  .two-col { display: flex; gap: 24px; }
+  .two-col > div { flex: 1; }
+
+  /* ── screen presentation (web version) ── */
+  @media screen {
+    body { background: #eceae3; padding: 30px 10px 60px; }
+    .lang-switch { max-width: 196mm; margin: 0 auto 10px; text-align: right;
+      font-size: 12px; letter-spacing: 1px; }
+    .lang-switch a { color: #8a6d1d; padding: 3px 9px; border: 1px solid #d8c98f;
+      border-radius: 3px; margin-left: 6px; background: #fff; }
+    .lang-switch a.cur { background: #8a6d1d; color: #fff; border-color: #8a6d1d; }
+    .sheet { max-width: 196mm; margin: 0 auto; background: #fff;
+      padding: 13mm 15mm; box-shadow: 0 2px 26px rgba(60,50,20,.16); border-radius: 3px; }
+  }
+  @media screen and (max-width: 640px) {
+    body { padding: 14px 6px 40px; font-size: 10.2pt; }
+    .sheet { padding: 18px 13px; }
+    h1 { font-size: 18pt; letter-spacing: 1.5px; }
+    .strip { flex-wrap: wrap; }
+    .strip .kn { flex: 1 1 32%; margin-bottom: 7px; }
+    .two-col { flex-direction: column; gap: 0; }
+    .job-head { flex-direction: column; align-items: flex-start; }
+    .job-dates { padding-left: 0; }
+  }
+  @media print {
+    .lang-switch { display: none; }
+    body { font-size: 8.75pt; line-height: 1.30; }
+    h1 { font-size: 20pt; }
+    .headline { font-size: 10.3pt; }
+    .contact { font-size: 8.2pt; line-height: 1.45; }
+    .strip .kn b { font-size: 12.5pt; }
+    h2 { margin: 7px 0 3px; }
+    .job { margin-bottom: 6px; }
+    .strip { margin: 7px 0 3px; padding: 5px 4px; }
+    li { margin-bottom: 1.2px; }
+    p.summary { margin-top: 3px; }
+    .auth { margin-top: 5px; padding: 4px 9px; font-size: 8.6pt; }
+    .two-col { gap: 18px; }
+  }
+</style>
+</head>
+<body>
+<nav class="lang-switch"><a href="index.html">EN</a><a href="pl.html">PL</a><a class="cur" href="ru.html">RU</a></nav>
+<div class="sheet">
+
+<div class="head">
+  <h1>TATSIANA ZHUKAVETS</h1>
+  <div class="headline">Program &amp; Operations Manager · Образование / EdTech</div>
+  <div class="contact">
+    Kraków, Poland &nbsp;·&nbsp; +48 452 872 217 &nbsp;·&nbsp;
+    <a href="mailto:tatsianazhu@outlook.com">tatsianazhu@outlook.com</a> &nbsp;·&nbsp;
+    <a href="mailto:zhukavetst@gmail.com">zhukavetst@gmail.com</a><br>
+    <a href="https://www.linkedin.com/in/tatsiana-zhukavets/">linkedin.com/in/tatsiana-zhukavets</a>
+    &nbsp;·&nbsp; CV онлайн: <a href="https://intlady95.github.io/summary/ru.html">intlady95.github.io/summary</a>
+  </div>
+</div>
+
+<div class="strip">
+  <div class="kn"><b>2 500+</b><span>учеников моего центра</span></div>
+  <div class="kn"><b>17</b><span>человек в моей команде</span></div>
+  <div class="kn"><b>8</b><span>направлений программ</span></div>
+  <div class="kn"><b>40&ndash;60%</b><span>удержание клиентов</span></div>
+  <div class="kn"><b>360</b><span>уроков, созданных с AI</span></div>
+  <div class="kn"><b>3</b><span>рабочих языка</span></div>
+</div>
+
+<h2>Профиль</h2>
+<p class="summary">
+Менеджер программ и операций с <b>6+ годами</b> практики в образовательном бизнесе
+и цифровых продуктах. Построила образовательную компанию с нуля до <b>2 500+ учеников</b>
+и команды из <b>17 человек</b>; вела программы обучения в краковской компании; сегодня создаю цифровые продукты под ключ,
+<b>AI-инструменты — моя ежедневная практика</b>.
+<b>Сертификат Google по управлению проектами.</b> Бизнес-главу закрыла в 2022 —
+теперь ищу одну команду, с которой расти долго.
+</p>
+<div class="auth">
+<b>Право на работу:</b> гражданка Беларуси, польская карта побыту (семейное основание —
+не привязана к работодателю). Для найма достаточно одного онлайн-oświadczenie
+со стороны работодателя: ~7 дней, 400 zł. Без полной процедуры разрешения на работу.
+</div>
+
+<h2>Опыт</h2>
+
+<div class="job">
+  <div class="job-head">
+    <span><span class="job-role">Independent Product &amp; Program Manager</span><span class="job-org">собственные продукты · Краков</span></span>
+    <span class="job-dates">авг 2024 – сейчас</span>
+  </div>
+  <ul>
+    <li>Строю мультиязычную онлайн-академию языков под ключ (LangBook, в процессе): <b>360 уроков</b> и <b>5 000+ упражнений</b> (CEFR), AI-конвейер с многоступенчатым контролем качества</li>
+    <li>Ещё два продукта на стадиях проектирования и pre-release — семейное health-приложение для <b>3 рынков ЕС</b> (14+ ADR, GDPR / EU AI Act / MDR) и AI-платформа консультаций (мультиязычный контент, QA-пайплайн)</li>
+    <li>Веду небольшую студию персонального брендинга: интерактивные портфолио, CV, LinkedIn-киты — сдача в переписке</li>
+  </ul>
+</div>
+
+<div class="job">
+  <div class="job-head">
+    <span><span class="job-role">People Development Manager</span><span class="job-org">Modeling sp. z o.o. · Kraków</span></span>
+    <span class="job-dates">янв 2024 – май 2024</span>
+  </div>
+  <ul>
+    <li>Вела <b>кросс-функциональные проекты</b> по оптимизации операций и работы команды</li>
+    <li>Разрабатывала и проводила <b>программы обучения</b>; партнёрство с HR по найму и удержанию</li>
+    <li>Выявляла риски, вела проектную документацию, отчитывалась руководству; мультикультурная команда (PL/UA/RU/EN)</li>
+  </ul>
+</div>
+
+<div class="job">
+  <div class="job-head">
+    <span><span class="job-role">Клиентский сервис</span><span class="job-org">ритейл · гастрономия · game presenter · Краков</span></span>
+    <span class="job-dates">сен 2022 – янв 2024</span>
+  </div>
+  <ul>
+    <li>Ритейл и гастрономия; <b>польский с нуля до рабочего уровня</b> прямо на работе, клиенты на трёх языках</li>
+  </ul>
+</div>
+
+<div class="job">
+  <div class="job-head">
+    <span><span class="job-role">Program &amp; Operations Manager</span><span class="job-org">Образовательный центр Rich Mind (своя компания) · Пинск, Беларусь</span></span>
+    <span class="job-dates">июл 2019 – май 2022</span>
+  </div>
+  <ul>
+    <li>Построила частный образовательный центр с нуля: <b>2 500+ учеников</b> и <b>8 направлений программ</b></li>
+    <li>Руководила мультидисциплинарной <b>командой из 17 человек</b>: найм, планирование, бюджеты, контроль качества</li>
+    <li>Весь маркетинг центра; управление через KPI: <b>удержание клиентов 40–60%</b>, <b>рост +20%</b></li>
+    <li>Провела компанию <b>через COVID</b>; при эмиграции передала её партнёру в <b>структурированной передаче</b></li>
+  </ul>
+</div>
+
+<div class="job">
+  <div class="job-head">
+    <span><span class="job-role">Преподаватель английского</span><span class="job-org">частная практика · Пинск, Беларусь</span></span>
+    <span class="job-dates">июн 2018 – май 2022</span>
+  </div>
+  <ul>
+    <li><b>3 ученика — призёры</b> городских и областных олимпиад; медработник с нуля до <b>86%</b> на профэкзамене</li>
+  </ul>
+</div>
+
+<div class="job">
+  <div class="job-head">
+    <span><span class="job-role">Ассистент CEO</span><span class="job-org">JOY REPUBLIC · Пинск, Беларусь</span></span>
+    <span class="job-dates">май 2018 – июл 2019</span>
+  </div>
+  <ul>
+    <li>Договоры и документооборот, календарь руководителя, поддержка привлечения клиентов</li>
+  </ul>
+</div>
+
+<div class="two-col">
+  <div>
+    <h2>Образование</h2>
+    <div class="edu-line"><b>Столинский аграрно-экономический колледж</b><br>Диплом по бухгалтерскому учёту, 2016–2019</div>
+    <div class="edu-line">Брестский госуниверситет им. А.С. Пушкина<br>Преподавание английского языка (2013–2015, не завершено)</div>
+
+    <h2>Языки</h2>
+    <p class="langs">
+      <b>Английский</b> — C1<br>
+      <b>Польский</b> — рабочий уровень (B2+/C1), ежедневный язык с 2022<br>
+      <b>Русский, белорусский</b> — родные
+    </p>
+  </div>
+  <div>
+    <h2>Сертификаты <span style="font-weight:400; text-transform:none; letter-spacing:0">(избранное)</span></h2>
+    <ul>
+      <li><b>Google Project Management Professional Certificate</b> — 2026</li>
+      <li>Google Digital Marketing &amp; E-commerce series — 2026</li>
+      <li>Teaching English Online — <b>Cambridge</b> University Press &amp; Assessment, 2025</li>
+      <li>Career Essentials in Project Management — Microsoft, 2025</li>
+    </ul>
+  </div>
+</div>
+
+<h2>Навыки</h2>
+<p class="skills">
+<b>Управление проектами</b> (Agile / Scrum) · <b>работа со стейкхолдерами и рисками</b> ·
+бюджеты и планирование · Jira · Notion · Google Workspace · Microsoft 365 ·
+работа с AI-инструментами (Claude Code, ChatGPT, основы n8n) ·
+контент EN/RU · знание GDPR / EU AI Act
+</p>
+
+</div><!-- /sheet -->
+<script>window.goatcounter={endpoint:"https://intlady.goatcounter.com/count",path:"summary-ru",title:"CV Tatsiana Zhukavets"}</script>
+<script async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>
