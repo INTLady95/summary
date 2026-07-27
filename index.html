@@ -1,263 +1,404 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Tatsiana Zhukavets — CV</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Tatsiana Zhukavets · CV</title>
 <style>
-  @page { size: A4; margin: 8mm 12mm; }
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body {
-    font-family: "Helvetica Neue", Arial, sans-serif;
-    font-size: 9.5pt; line-height: 1.45; color: #21201d;
+  :root{
+    --bg:#181633; --bg-deep:#221e48; --bg-alt:#1d1a3c;
+    --ink:#ece9ff; --ink-soft:#c9c3ec; --muted:#948dbb;
+    --gold:#f5c15c; --gold-deep:#c9922c; --accent-soft:#ffd98a;
+    --cyan:#34e5ff; --violet:#a78bfa;
+    --card-a:rgba(42,38,88,.96); --card-b:rgba(33,29,70,.96);
+    --field-border:rgba(255,255,255,.12);
+    --line:rgba(245,193,92,.20); --line-soft:rgba(167,139,250,.22);
+    --glow:radial-gradient(1200px 600px at 12% -8%, rgba(124,58,237,.28), transparent 60%),
+           radial-gradient(900px 500px at 100% 0%, rgba(70,110,255,.14), transparent 55%);
+    --shadow:0 20px 50px -30px rgba(0,0,0,.7);
+    --shine:linear-gradient(100deg,#c9922c,#f5c15c,#fff3d6,#ffe9b0,#f5c15c,#c9922c);
   }
-  a { color: #21201d; text-decoration: none; }
-  .contact a { color: #8a6d1d; display: inline-block; }
+  body.light{
+    --bg:#eadfc4; --bg-deep:#f4ead2; --bg-alt:#e0d1ac;
+    --ink:#3a2c12; --ink-soft:#6b5834; --muted:#94805a;
+    --gold:#9c6b10; --gold-deep:#75500a; --accent-soft:#b98a2a;
+    --cyan:#0e7d8f; --violet:#7d54c9;
+    --card-a:rgba(255,251,243,.85); --card-b:rgba(244,234,210,.85);
+    --field-border:rgba(124,84,12,.28);
+    --line:rgba(124,84,12,.26); --line-soft:rgba(124,84,12,.15);
+    --glow:radial-gradient(1100px 560px at 12% -8%, rgba(217,180,94,.4), transparent 60%),
+           radial-gradient(900px 500px at 100% 0%, rgba(176,138,224,.14), transparent 55%);
+    --shadow:0 20px 44px -28px rgba(124,84,12,.5);
+    --shine:linear-gradient(100deg,#5f470c,#9c6b10,#c99a34,#e6cf7a,#c99a34,#9c6b10,#5f470c);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0; background:var(--glow), var(--bg); color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    line-height:1.5; -webkit-font-smoothing:antialiased; transition:background .4s,color .4s}
+  ::selection{background:rgba(245,193,92,.28)}
+  #starfield{position:fixed; inset:0; z-index:-1; pointer-events:none; opacity:1; transition:opacity .5s}
+  body.light #starfield{opacity:0}
 
-  /* ── header ── */
-  .head { text-align: center; padding-bottom: 8px; border-bottom: 2.5px solid #b3922e; }
-  h1 {
-    font-family: Georgia, "Times New Roman", serif;
-    font-size: 23pt; font-weight: 700; letter-spacing: 2.5px; color: #21201d;
-  }
-  .headline {
-    font-size: 11pt; font-weight: 600; color: #8a6d1d;
-    letter-spacing: 0.3px; margin-top: 3px;
-  }
-  .contact { font-size: 8.6pt; color: #555; margin-top: 6px; line-height: 1.55; }
-  .contact .cbr { display: block; height: 0; }
+  #controls{position:fixed; top:14px; right:14px; z-index:40; display:flex; gap:6px; align-items:center}
+  #controls .grp{display:flex; gap:2px; background:var(--card-a); border:1px solid var(--line-soft);
+    border-radius:999px; padding:3px; backdrop-filter:blur(10px); box-shadow:var(--shadow)}
+  .langbtn{font:inherit; font-size:.74rem; font-weight:600; letter-spacing:.03em; color:var(--muted);
+    background:none; border:none; cursor:pointer; padding:5px 10px; border-radius:999px; transition:.2s}
+  .langbtn:hover{color:var(--ink)} .langbtn.active{background:linear-gradient(180deg,var(--accent-soft),var(--gold)); color:#1a1206}
+  #theme-btn{font-size:1rem; width:34px; height:34px; border-radius:999px; cursor:pointer; line-height:1; color:var(--ink);
+    background:var(--card-a); border:1px solid var(--line-soft); backdrop-filter:blur(10px); box-shadow:var(--shadow); transition:.2s}
+  #theme-btn:hover{border-color:var(--gold)}
 
-  /* ── key numbers strip ── */
-  .strip {
-    display: flex; justify-content: space-between; text-align: center;
-    margin: 9px 0 4px; padding: 7px 4px;
-    border-bottom: 1px solid #e3d7ae;
-  }
-  .strip .kn { flex: 1; }
-  .strip .kn b {
-    display: block; font-family: Georgia, serif;
-    font-size: 13.5pt; color: #8a6d1d; line-height: 1.1;
-  }
-  .strip .kn span {
-    display: block; font-size: 7.2pt; color: #666;
-    text-transform: uppercase; letter-spacing: 0.4px; margin-top: 2px;
+  .sheet{max-width:860px; margin:0 auto; padding:52px 24px 70px}
+
+  /* hero */
+  .badge{display:inline-block; font-size:.68rem; letter-spacing:.28em; text-transform:uppercase; color:var(--gold);
+    border:1px solid var(--line); border-radius:999px; padding:6px 15px; margin-bottom:20px}
+  h1{font-family:Georgia,"Times New Roman",serif; font-weight:500; font-size:clamp(2.4rem,7vw,4rem); margin:0 0 .12em;
+    letter-spacing:.01em; background:var(--shine); background-size:200% auto;
+    -webkit-background-clip:text; background-clip:text; color:transparent; animation:shine 6s linear infinite}
+  @keyframes shine{to{background-position:200% center}}
+  @media (prefers-reduced-motion: reduce){ h1,.stat .n{animation:none} }
+  .tagline{font-size:clamp(1rem,2.6vw,1.28rem); color:var(--ink-soft); font-weight:500; max-width:40ch}
+  .contact{display:flex; flex-wrap:wrap; gap:8px 18px; margin-top:16px; font-size:.9rem; color:var(--muted)}
+  .contact a{color:var(--gold); text-decoration:none} .contact a:hover{text-decoration:underline}
+  .contact .sep{color:var(--line)}
+
+  /* stat strip */
+  .stats{display:grid; grid-template-columns:repeat(6,1fr); gap:12px; margin:34px 0 30px}
+  .stat{background:linear-gradient(180deg,var(--card-a),var(--card-b)); border:1px solid var(--line-soft);
+    border-radius:14px; padding:16px 12px; text-align:center; box-shadow:var(--shadow)}
+  .stat .n{font-family:Georgia,serif; font-size:1.7rem; font-weight:600; line-height:1;
+    background:var(--shine); background-size:200% auto; -webkit-background-clip:text; background-clip:text; color:transparent; animation:shine 6s linear infinite}
+  .stat .n .u{font-size:1rem} .stat .c{font-size:.68rem; color:var(--muted); margin-top:7px; line-height:1.35}
+
+  .pitch{font-size:1.08rem; line-height:1.62; color:var(--ink); border-left:3px solid var(--gold);
+    padding:6px 0 6px 20px; margin:8px 0 30px; font-family:Georgia,"Times New Roman",serif}
+  .pitch b{color:var(--gold); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif}
+  .cta-lead{text-align:center; font-family:Georgia,serif; font-style:italic; color:var(--ink-soft); font-size:1.08rem; margin:34px 0 -4px}
+
+  .cols{display:grid; grid-template-columns:1.55fr 1fr; gap:22px}
+  .block{background:linear-gradient(180deg,var(--card-a),var(--card-b)); border:1px solid var(--line-soft);
+    border-radius:16px; padding:22px 22px; box-shadow:var(--shadow)}
+  .block + .block{margin-top:18px}
+  h3{font-size:.72rem; letter-spacing:.2em; text-transform:uppercase; color:var(--gold); margin:0 0 16px; font-weight:700}
+
+  .job{padding-bottom:16px; margin-bottom:16px; border-bottom:1px solid var(--line-soft)}
+  .job:last-child{padding-bottom:0; margin-bottom:0; border-bottom:none}
+  .job .role{font-weight:600; font-size:1.02rem; color:var(--ink)}
+  .job .org{font-size:.86rem; color:var(--ink-soft); margin-top:2px}
+  .job .org .when{color:var(--muted)}
+  .job .did{font-size:.9rem; color:var(--ink-soft); margin-top:8px}
+  .job .did .hl{color:var(--gold); font-weight:600}
+
+  .taglist{display:flex; flex-wrap:wrap; gap:7px}
+  .pill{font-size:.8rem; color:var(--ink-soft); background:color-mix(in srgb,var(--gold) 9%, transparent);
+    border:1px solid var(--line); border-radius:999px; padding:5px 11px}
+  .lang-row{display:flex; justify-content:space-between; font-size:.9rem; padding:6px 0; border-bottom:1px solid var(--line-soft)}
+  .lang-row:last-child{border-bottom:none} .lang-row b{color:var(--ink)} .lang-row span{color:var(--muted)}
+  .mini{font-size:.88rem; color:var(--ink-soft); line-height:1.6}
+
+  .cta{display:flex; flex-wrap:wrap; gap:12px; justify-content:center; margin-top:34px}
+  .cta a{font-size:.96rem; font-weight:600; text-decoration:none; padding:13px 30px; border-radius:999px; transition:transform .15s, box-shadow .15s}
+  .cta a:hover{transform:translateY(-2px)}
+  .cta .primary{color:#1a1206; background:linear-gradient(180deg,var(--accent-soft),var(--gold)); box-shadow:0 14px 30px -12px rgba(245,193,92,.55)}
+  .cta .ghost{color:var(--gold); border:1px solid var(--line)}
+
+  footer{text-align:center; color:var(--muted); font-size:.78rem; margin-top:40px}
+  footer .name{color:var(--gold); letter-spacing:.05em}
+
+  @media(max-width:720px){
+    .stats{grid-template-columns:repeat(3,1fr)}
+    .cols{grid-template-columns:1fr}
   }
 
-  /* ── sections ── */
-  h2 {
-    font-size: 10pt; font-weight: 700; text-transform: uppercase;
-    letter-spacing: 1.6px; color: #8a6d1d;
-    margin: 12px 0 6px; padding-bottom: 2px;
-    border-bottom: 1px solid #e3d7ae;
-  }
-  .job { margin-bottom: 10px; page-break-inside: avoid; }
-  .job-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 3px; }
-  .job-role {
-    display: inline-block; font-weight: 700; font-size: 9.7pt; color: #21201d;
-    border: 1px solid #cbb268; background: #fdf9ee;
-    border-radius: 4px; padding: 1.5px 9px; margin-right: 7px;
-  }
-  .job-org  { font-weight: 400; color: #6b5a28; font-size: 9.2pt; }
-  .job-dates {
-    font-size: 8.4pt; color: #777; white-space: nowrap; padding-left: 12px;
-    font-style: italic;
-  }
-  ul { margin: 1px 0 0 15px; }
-  li { margin-bottom: 2.2px; color: #333; }
-  li b, p b { color: #21201d; }
-  p.summary { margin-top: 4px; color: #333; }
-  .auth {
-    background: #faf6e8; border: 1px solid #e3d7ae; border-left: 3px solid #b3922e;
-    padding: 6px 10px; margin-top: 7px; font-size: 9pt; color: #444;
-    border-radius: 2px;
-  }
-  .edu-line { margin-bottom: 3px; color: #333; }
-  .skills { margin-top: 2px; color: #333; line-height: 1.6; }
-  .langs { color: #333; }
-  .two-col { display: flex; gap: 24px; }
-  .two-col > div { flex: 1; }
-
-  /* ── screen presentation (web version) ── */
-  @media screen {
-    body { background: #eceae3; padding: 30px 10px 60px; }
-    .lang-switch { max-width: 196mm; margin: 0 auto 10px; text-align: right;
-      font-size: 12px; letter-spacing: 1px; }
-    .lang-switch a { color: #8a6d1d; padding: 3px 9px; border: 1px solid #d8c98f;
-      border-radius: 3px; margin-left: 6px; background: #fff; }
-    .lang-switch a.cur { background: #8a6d1d; color: #fff; border-color: #8a6d1d; }
-    .sheet { max-width: 196mm; margin: 0 auto; background: #fff;
-      padding: 13mm 15mm; box-shadow: 0 2px 26px rgba(60,50,20,.16); border-radius: 3px; }
-  }
-  @media screen and (max-width: 640px) {
-    body { padding: 14px 6px 40px; font-size: 10.2pt; }
-    .sheet { padding: 18px 13px; }
-    h1 { font-size: 18pt; letter-spacing: 1.5px; }
-    .strip { flex-wrap: wrap; }
-    .strip .kn { flex: 1 1 32%; margin-bottom: 7px; }
-    .two-col { flex-direction: column; gap: 0; }
-    .job-head { flex-direction: column; align-items: flex-start; }
-    .job-dates { padding-left: 0; }
-  }
-  @media print {
-    .lang-switch { display: none; }
-    body { font-size: 8.75pt; line-height: 1.30; }
-    h1 { font-size: 20pt; }
-    .headline { font-size: 10.3pt; }
-    .contact { font-size: 8.2pt; line-height: 1.45; }
-    .strip .kn b { font-size: 12.5pt; }
-    h2 { margin: 7px 0 3px; }
-    .job { margin-bottom: 6px; }
-    .strip { margin: 7px 0 3px; padding: 5px 4px; }
-    li { margin-bottom: 1.2px; }
-    p.summary { margin-top: 3px; }
-    .auth { margin-top: 5px; padding: 4px 9px; font-size: 8.6pt; }
-    .two-col { gap: 18px; }
-  }
+  /* ── тихая полоска-подпись: связывает публичные страницы между собой ── */
+  .sitenav{margin:26px 0 0; padding:18px 0 0; display:flex; flex-wrap:wrap; align-items:center;
+    gap:10px 22px; border-top:1px solid var(--line-soft); font-size:12.5px; line-height:1.7}
+  .sitenav .sn-links{display:flex; flex-wrap:wrap; align-items:center; gap:6px 18px; min-width:0}
+  .sitenav a{color:var(--muted); text-decoration:none; border-bottom:1px solid transparent;
+    transition:color .18s, border-color .18s}
+  .sitenav a:hover{color:var(--gold); border-bottom-color:var(--line)}
+  .sitenav .sn-here{color:var(--muted); opacity:.45}
+  .sitenav .sn-go{margin-left:auto; color:var(--gold); white-space:nowrap}
+  .sitenav .sn-go:hover{border-bottom-color:var(--gold)}
+  @media(max-width:640px){ .sitenav .sn-go{margin-left:0} }
 </style>
 </head>
 <body>
-<nav class="lang-switch"><a class="cur" href="index.html">EN</a><a href="pl.html">PL</a><a href="ru.html">RU</a></nav>
+<canvas id="starfield" aria-hidden="true"></canvas>
+<div id="controls">
+  <div class="grp">
+    <button class="langbtn" data-lang="ru">RU</button>
+    <button class="langbtn active" data-lang="en">EN</button>
+    <button class="langbtn" data-lang="pl">PL</button>
+  </div>
+  <button id="theme-btn" title="Light theme">☀</button>
+</div>
+
 <div class="sheet">
-
-<div class="head">
-  <h1>TATSIANA ZHUKAVETS</h1>
-  <div class="headline">Program &amp; Operations Manager · Education / EdTech</div>
+  <span class="badge" data-i18n="badge"></span>
+  <h1>Tatsiana Zhukavets</h1>
+  <p class="tagline" data-i18n="tagline"></p>
   <div class="contact">
-    Kraków, Poland &nbsp;·&nbsp; +48 452 872 217 &nbsp;·&nbsp;
-    <a href="mailto:tatsianazhu@outlook.com">tatsianazhu@outlook.com</a> &nbsp;·&nbsp;
-    <a href="mailto:zhukavetst@gmail.com">zhukavetst@gmail.com</a>
-    <span class="cbr"></span>
-    <a href="https://www.linkedin.com/in/tatsiana-zhukavets/">linkedin.com/in/tatsiana-zhukavets</a>
-    &nbsp;·&nbsp; Online CV: <a href="https://intlady95.github.io/summary/">intlady95.github.io/summary</a>
+    <span data-i18n="loc"></span><span class="sep">·</span>
+    <a href="mailto:zhukavetst@gmail.com">zhukavetst@gmail.com</a><span class="sep">·</span>
+    <a href="https://www.linkedin.com/in/tatsiana-zhukavets" target="_blank" rel="noopener">LinkedIn</a><span class="sep">·</span>
+    <span>RU · EN C1 · PL B2+</span>
+    <!-- добавь телефон здесь, если захочешь: <span class="sep">·</span><span>+48 ...</span> -->
   </div>
-</div>
 
-<div class="strip">
-  <div class="kn"><b>2,500+</b><span>students at my center</span></div>
-  <div class="kn"><b>17</b><span>team built &amp; led</span></div>
-  <div class="kn"><b>8</b><span>program verticals</span></div>
-  <div class="kn"><b>40&ndash;60%</b><span>client retention</span></div>
-  <div class="kn"><b>360</b><span>lessons · 5,000+ exercises</span></div>
-  <div class="kn"><b>3</b><span>working languages</span></div>
-</div>
-
-<h2>Profile</h2>
-<p class="summary">
-Program and operations manager with <b>6+ years</b> of hands-on experience running
-education businesses and digital products. Built an education company from zero
-to <b>2,500+ students</b> with a team of <b>17</b>; delivered training programs in a Kraków company; today I ship digital products
-end-to-end with <b>AI tools in daily production</b>. <b>Google-certified in project management.</b> I closed my business
-chapter in 2022 — now looking for one team to grow with long-term.
-</p>
-<div class="auth">
-<b>Work authorization:</b> Belarusian citizen, Polish residence card (family
-basis — not tied to any employer). Hiring requires one employer-side online
-declaration (oświadczenie): ~7 days, 400 zł. No full work-permit procedure.
-</div>
-
-<h2>Experience</h2>
-
-<div class="job">
-  <div class="job-head">
-    <span><span class="job-role">Independent Product &amp; Program Manager</span><span class="job-org">own product portfolio · Kraków</span></span>
-    <span class="job-dates">Aug 2024 – present</span>
+  <div class="stats">
+    <div class="stat"><div class="n">3</div><div class="c" data-i18n="st1"></div></div>
+    <div class="stat"><div class="n">17</div><div class="c" data-i18n="st2"></div></div>
+    <div class="stat"><div class="n">2,500<span class="u">+</span></div><div class="c" data-i18n="st3"></div></div>
+    <div class="stat"><div class="n">8</div><div class="c" data-i18n="st4"></div></div>
+    <div class="stat"><div class="n">50<span class="u">+</span></div><div class="c" data-i18n="st5"></div></div>
+    <div class="stat"><div class="n">4<span class="u" data-i18n="st6u"></span></div><div class="c" data-i18n="st6"></div></div>
   </div>
-  <ul>
-    <li>Building a multilingual online language academy end-to-end (LangBook, in progress): <b>360 lessons</b> and <b>5,000+ interactive exercises</b> across CEFR levels, produced through an AI pipeline with multi-stage quality control</li>
-    <li>Two further products in design and pre-release — a family health app for <b>3 EU markets</b> (user research, 14+ ADRs, GDPR / EU AI Act / MDR scope) and an AI consultation platform (multilingual content system, QA pipeline)</li>
-    <li>Running a small personal-branding studio: interactive portfolios, CVs, LinkedIn kits — text-based delivery</li>
-  </ul>
+
+  <p class="pitch" data-i18n="pitch"></p>
+
+  <div class="cols">
+    <div>
+      <div class="block">
+        <h3 data-i18n="h_exp"></h3>
+        <div class="job">
+          <div class="role" data-i18n="j1r"></div>
+          <div class="org" data-i18n="j1o"></div>
+          <div class="did" data-i18n="j1d"></div>
+        </div>
+        <div class="job">
+          <div class="role" data-i18n="j2r"></div>
+          <div class="org" data-i18n="j2o"></div>
+          <div class="did" data-i18n="j2d"></div>
+        </div>
+        <div class="job">
+          <div class="role" data-i18n="j3r"></div>
+          <div class="org" data-i18n="j3o"></div>
+          <div class="did" data-i18n="j3d"></div>
+        </div>
+        <div class="job">
+          <div class="role" data-i18n="j4r"></div>
+          <div class="org" data-i18n="j4o"></div>
+          <div class="did" data-i18n="j4d"></div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="block">
+        <h3 data-i18n="h_skills"></h3>
+        <div class="taglist" id="skills"></div>
+      </div>
+      <div class="block">
+        <h3 data-i18n="h_ai"></h3>
+        <p class="mini" data-i18n="ai_body"></p>
+      </div>
+      <div class="block">
+        <h3 data-i18n="h_cert"></h3>
+        <p class="mini" data-i18n="cert_body"></p>
+      </div>
+      <div class="block">
+        <h3 data-i18n="h_lang"></h3>
+        <div class="lang-row"><b data-i18n="l_ru"></b><span data-i18n="l_ru_lv"></span></div>
+        <div class="lang-row"><b data-i18n="l_en"></b><span>C1</span></div>
+        <div class="lang-row"><b data-i18n="l_pl"></b><span>B2+ / C1</span></div>
+      </div>
+    </div>
+  </div>
+
+  <p class="cta-lead" data-i18n="cta_lead"></p>
+  <div class="cta">
+    <a class="primary" href="https://intlady95.github.io/portfolio" target="_blank" rel="noopener" data-i18n="cta_full"></a>
+    <a class="ghost" id="mail-btn" href="mailto:zhukavetst@gmail.com" data-i18n="cta_talk"></a>
+  </div>
+
+  <!-- ── полоска-подпись: переход на остальные публичные страницы ── -->
+  <nav class="sitenav" aria-label="More pages">
+    <span class="sn-links">
+      <a href="https://intlady95.github.io/portfolio/" data-i18n="nav_portfolio"></a>
+      <span class="sn-here" data-i18n="nav_summary"></span>
+      <a href="https://intlady95.github.io/high-pitch/" data-i18n="nav_pitch"></a>
+      <a href="https://intlady95.github.io/fitting-room/" data-i18n="nav_fitting"></a>
+      <a href="https://intlady95.github.io/links/" data-i18n="nav_links"></a>
+    </span>
+    <a class="sn-go" href="https://intlady95.github.io/anketa/" data-i18n="nav_start"></a>
+  </nav>
+
+  <footer><span class="name">TATSIANA ZHUKAVETS</span> · Program &amp; Operations Manager · <span data-i18n="foot"></span></footer>
 </div>
 
-<div class="job">
-  <div class="job-head">
-    <span><span class="job-role">People Development Manager</span><span class="job-org">Modeling sp. z o.o. · Kraków</span></span>
-    <span class="job-dates">Jan 2024 – May 2024</span>
-  </div>
-  <ul>
-    <li>Led <b>cross-functional projects</b> to streamline operations and team performance</li>
-    <li>Designed and delivered <b>training programs</b>; partnered with HR on recruitment and retention</li>
-    <li>Identified risks, maintained project documentation, reported to management; multicultural team (PL/UA/RU/EN)</li>
-  </ul>
-</div>
+<script>
+var SKILLS = ["Program & Operations","Project Management","Team Leadership","Stakeholder Management","AI Tools & Automation","Product Ownership","Content Strategy","Digital Marketing","Quality Assurance","Cross-cultural Communication"];
 
-<div class="job">
-  <div class="job-head">
-    <span><span class="job-role">Customer Service Roles</span><span class="job-org">retail · hospitality · game presenter · Kraków</span></span>
-    <span class="job-dates">Sep 2022 – Jan 2024</span>
-  </div>
-  <ul>
-    <li>Supported myself in a new country while <b>learning Polish from zero to working level</b> on the job; served customers in three languages (POS, HACCP)</li>
-  </ul>
-</div>
+var T = {
+ en:{
+  badge:"60-second CV",
+  tagline:"Program & Operations Manager · Education & EdTech · I build products with AI.",
+  loc:"Kraków, Poland",
+  st1:"products of my own in build now",
+  st2:"person team I built & led",
+  st3:"students at my Rich Mind center",
+  st4:"program verticals in 3 years",
+  st5:"certifications since 2024",
+  st6:"years teaching English, measurable results", st6u:" yrs",
+  pitch:"I build products through <b>people, process discipline, and AI</b>. My foundation is a founder's — I grew an education business from zero to a <b>17-person team</b> and <b>2,500+ students</b>, carried it through COVID, and handed it over cleanly. Today I'm building <b>three products of my own</b>, with AI as my working team — and I bring that same warmth, structure, and drive to everything I ship.",
+  cta_lead:"Let's build something good together.",
+  mail_subj:"Hello Tatsiana — let's talk",
+  mail_body:"Hi Tatsiana,\n\nI came across your 60-second CV and portfolio — really impressive.\n\nI'd like to talk about:\n— \n\nA bit about me / my company:\n— \n\nBest way to reach me:\n— \n\nBest regards,\n",
+  h_exp:"Experience",
+  j1r:"Product & Program Manager — own products", j1o:"Independent · 2024 – now · Kraków",
+  j1d:"Building <span class='hl'>3 products</span> to launch: an <b>AI consultation platform</b> (I own the product & its multilingual content), an <b>online language academy</b> — 360 lessons built, in progress, AI pipeline + multi-stage QA — and a <b>family medicine-cabinet app</b> (PL/CZ/ES market research).",
+  j2r:"Program & Operations Manager — own company", j2o:"Rich Mind educational center · 2019 – 2022 · Pinsk, Belarus",
+  j2d:"Built from zero to <span class='hl'>2,500+ students</span>, <span class='hl'>8 verticals</span> and a <span class='hl'>17-person team</span> in 3 years; 40–60% retention. Exited via a structured handover to a partner.",
+  j3r:"People Development Manager", j3o:"Modeling sp. z o.o. · 2024 · Kraków",
+  j3d:"Led cross-functional projects, designed training programs, coordinated stakeholders across multicultural teams.",
+  j4r:"English Tutor", j4o:"Joy Republic · Rich Mind · 2018 – 2022",
+  j4d:"Prepared students to top Olympiad placements; trained a medic from zero to <span class='hl'>86%</span> on a professional English exam.",
+  h_skills:"Core skills",
+  h_ai:"AI toolkit",
+  ai_body:"AI is my everyday working tool, not an experiment. I work in Claude Code and Codex, set up my own AI helpers for my tasks (automating the routine), and know how to get precise, reliable results from AI — from idea to a working prototype.",
+  h_cert:"Certifications",
+  cert_body:"Google Project Management · Google Digital Marketing & E-commerce · Microsoft Career Essentials · a series of AI courses.",
+  h_lang:"Languages", l_ru:"Russian", l_ru_lv:"Native", l_en:"English", l_pl:"Polish",
+  cta_full:"Full portfolio →", cta_talk:"Let's talk →",
+  foot:"read in 60 seconds",
+  nav_portfolio:"Interactive Portfolio", nav_summary:"Executive Summary", nav_pitch:"High Pitch",
+  nav_fitting:"Portfolio Showroom", nav_links:"All links", nav_start:"Start your project →"
+ },
+ ru:{
+  badge:"CV на 60 секунд",
+  tagline:"Program & Operations Manager · Образование и EdTech · Строю продукты с AI.",
+  loc:"Краков, Польша",
+  st1:"своих продукта в разработке сейчас",
+  st2:"человек в команде, которую я построила",
+  st3:"учеников в моём центре Rich Mind",
+  st4:"вертикали за 3 года",
+  st5:"сертификатов с 2024 года",
+  st6:"года преподавания с измеримым результатом", st6u:" г.",
+  pitch:"Я создаю продукты через <b>людей, дисциплину процессов и AI</b>. Моя основа — предпринимательская: я вырастила образовательный бизнес с нуля до <b>команды из 17 человек</b> и <b>2 500+ учеников</b>, провела его через COVID и передала партнёру без потерь. Сегодня я строю <b>три собственных продукта</b>, где AI — моя рабочая команда, и вношу то же тепло, структуру и драйв во всё, что делаю.",
+  cta_lead:"Давайте создадим что-то хорошее вместе.",
+  mail_subj:"Здравствуйте, Татьяна — давайте пообщаемся",
+  mail_body:"Здравствуйте, Татьяна!\n\nЯ увидел(а) ваше CV на 60 секунд и портфолио — очень впечатляет.\n\nХочу обсудить:\n— \n\nНемного обо мне / моей компании:\n— \n\nКак со мной связаться:\n— \n\nС уважением,\n",
+  h_exp:"Опыт",
+  j1r:"Product & Program Manager — свои продукты", j1o:"Независимо · 2024 – сейчас · Краков",
+  j1d:"Строю <span class='hl'>3 продукта</span> к запуску: <b>AI-платформа консультаций</b> (владею продуктом и его мультиязычным контентом), <b>онлайн-академия языков</b> — 360 уроков готово, в процессе, AI-пайплайн + многоступенчатый QA — и <b>приложение для домашней аптечки</b> (исследование рынков PL/CZ/ES).",
+  j2r:"Program & Operations Manager — собственная компания", j2o:"Образовательный центр Rich Mind · 2019 – 2022 · Пинск, Беларусь",
+  j2d:"С нуля до <span class='hl'>2 500+ учеников</span>, <span class='hl'>8 вертикалей</span> и <span class='hl'>команды из 17 человек</span> за 3 года; удержание 40–60%. Вышла через структурированную передачу партнёру.",
+  j3r:"People Development Manager", j3o:"Modeling sp. z o.o. · 2024 · Краков",
+  j3d:"Вела кросс-функциональные проекты, разрабатывала программы обучения, координировала стейкхолдеров в мультикультурных командах.",
+  j4r:"Преподаватель английского", j4o:"Joy Republic · Rich Mind · 2018 – 2022",
+  j4d:"Готовила учеников к призовым местам на олимпиадах; вывела медработника с нуля до <span class='hl'>86%</span> на профессиональном экзамене по английскому.",
+  h_skills:"Ключевые навыки",
+  h_ai:"AI-инструменты",
+  ai_body:"AI — мой ежедневный рабочий инструмент, а не эксперимент. Работаю в Claude Code и Codex, настроила собственные AI-помощники под свои задачи (автоматизируют рутину) и умею добиваться от AI точного, надёжного результата — от идеи до готового прототипа.",
+  h_cert:"Сертификаты",
+  cert_body:"Google Project Management · Google Digital Marketing & E-commerce · Microsoft Career Essentials · серия AI-курсов.",
+  h_lang:"Языки", l_ru:"Русский", l_ru_lv:"Родной", l_en:"Английский", l_pl:"Польский",
+  cta_full:"Полное портфолио →", cta_talk:"Связаться →",
+  foot:"читается за 60 секунд",
+  nav_portfolio:"Интерактивное портфолио", nav_summary:"Executive Summary", nav_pitch:"High Pitch",
+  nav_fitting:"Шоурум портфолио", nav_links:"Все ссылки", nav_start:"Начать проект →"
+ },
+ pl:{
+  badge:"CV w 60 sekund",
+  tagline:"Program & Operations Manager · Edukacja i EdTech · Buduję produkty z AI.",
+  loc:"Kraków, Polska",
+  st1:"własne produkty w budowie teraz",
+  st2:"osób w zespole, który zbudowałam",
+  st3:"uczniów w moim centrum Rich Mind",
+  st4:"wertykały w 3 lata",
+  st5:"certyfikatów od 2024 roku",
+  st6:"lata nauczania z mierzalnym efektem", st6u:" lata",
+  pitch:"Tworzę produkty przez <b>ludzi, dyscyplinę procesów i AI</b>. Mój fundament jest przedsiębiorczy — rozwinęłam biznes edukacyjny od zera do <b>zespołu 17 osób</b> i <b>2 500+ uczniów</b>, przeprowadziłam go przez COVID i przekazałam bez strat. Dziś buduję <b>trzy własne produkty</b>, gdzie AI jest moim zespołem — i wnoszę to samo ciepło, strukturę i energię we wszystko, co robię.",
+  cta_lead:"Zbudujmy razem coś dobrego.",
+  mail_subj:"Dzień dobry, Tatiano — porozmawiajmy",
+  mail_body:"Dzień dobry, Tatiano!\n\nTrafiłem(-am) na Twoje CV w 60 sekund i portfolio — robią wrażenie.\n\nChciał(a)bym porozmawiać o:\n— \n\nKilka słów o mnie / mojej firmie:\n— \n\nJak się ze mną skontaktować:\n— \n\nPozdrawiam,\n",
+  h_exp:"Doświadczenie",
+  j1r:"Product & Program Manager — własne produkty", j1o:"Niezależnie · 2024 – teraz · Kraków",
+  j1d:"Buduję <span class='hl'>3 produkty</span> do startu: <b>platforma konsultacji AI</b> (jestem właścicielką produktu i jego wielojęzycznej treści), <b>internetowa akademia języków</b> — 360 lekcji gotowych, w budowie, pipeline AI + wieloetapowe QA — oraz <b>aplikacja domowej apteczki</b> (badanie rynków PL/CZ/ES).",
+  j2r:"Program & Operations Manager — własna firma", j2o:"Centrum edukacyjne Rich Mind · 2019 – 2022 · Pińsk, Białoruś",
+  j2d:"Od zera do <span class='hl'>2 500+ uczniów</span>, <span class='hl'>8 wertykałów</span> i <span class='hl'>zespołu 17 osób</span> w 3 lata; retencja 40–60%. Wyjście przez uporządkowane przekazanie partnerowi.",
+  j3r:"People Development Manager", j3o:"Modeling sp. z o.o. · 2024 · Kraków",
+  j3d:"Prowadziłam projekty międzyfunkcyjne, projektowałam programy szkoleń, koordynowałam interesariuszy w wielokulturowych zespołach.",
+  j4r:"Lektorka angielskiego", j4o:"Joy Republic · Rich Mind · 2018 – 2022",
+  j4d:"Przygotowałam uczniów do czołowych miejsc na olimpiadach; wyszkoliłam medyka od zera do <span class='hl'>86%</span> na zawodowym egzaminie z angielskiego.",
+  h_skills:"Kluczowe umiejętności",
+  h_ai:"Narzędzia AI",
+  ai_body:"AI to moje codzienne narzędzie pracy, nie eksperyment. Pracuję w Claude Code i Codex, skonfigurowałam własne pomoce AI pod swoje zadania (automatyzują rutynę) i potrafię uzyskiwać z AI precyzyjne, wiarygodne wyniki — od pomysłu po działający prototyp.",
+  h_cert:"Certyfikaty",
+  cert_body:"Google Project Management · Google Digital Marketing & E-commerce · Microsoft Career Essentials · seria kursów AI.",
+  h_lang:"Języki", l_ru:"Rosyjski", l_ru_lv:"Ojczysty", l_en:"Angielski", l_pl:"Polski",
+  cta_full:"Pełne portfolio →", cta_talk:"Porozmawiajmy →",
+  foot:"do przeczytania w 60 sekund",
+  nav_portfolio:"Interaktywne portfolio", nav_summary:"Executive Summary", nav_pitch:"High Pitch",
+  nav_fitting:"Showroom portfolio", nav_links:"Wszystkie linki", nav_start:"Zacznij projekt →"
+ }
+};
 
-<div class="job">
-  <div class="job-head">
-    <span><span class="job-role">Program &amp; Operations Manager</span><span class="job-org">Rich Mind Education Center (own company) · Pinsk, Belarus</span></span>
-    <span class="job-dates">Jul 2019 – May 2022</span>
-  </div>
-  <ul>
-    <li>Built a private education center from zero to <b>2,500+ enrolled students</b> across <b>8 program verticals</b></li>
-    <li>Led a multidisciplinary <b>team of 17</b>: hiring, planning, budgets, quality assurance</li>
-    <li>Ran the full marketing stack; KPI-driven management: <b>40–60% client retention</b>, <b>+20% growth</b></li>
-    <li>Carried the company <b>through COVID</b>; handed it over to a partner in a <b>structured transition</b> when emigrating</li>
-  </ul>
-</div>
+var lang='en';
+function applyLang(l){
+  lang = T[l]?l:'en';
+  document.documentElement.lang = lang;
+  var d = T[lang];
+  document.querySelectorAll('[data-i18n]').forEach(function(el){
+    var v=d[el.getAttribute('data-i18n')]; if(v!=null) el.innerHTML=v;
+  });
+  document.querySelectorAll('.langbtn').forEach(function(b){ b.classList.toggle('active', b.getAttribute('data-lang')===lang); });
+  // pre-filled email template for the "Let's talk" button
+  var mb = document.getElementById('mail-btn');
+  if(mb) mb.setAttribute('href', 'mailto:zhukavetst@gmail.com?subject=' + encodeURIComponent(d.mail_subj) + '&body=' + encodeURIComponent(d.mail_body));
+  try{ localStorage.setItem('cv-lang', lang); }catch(e){}
+}
+document.querySelectorAll('.langbtn').forEach(function(b){ b.addEventListener('click', function(){ applyLang(b.getAttribute('data-lang')); }); });
 
-<div class="job">
-  <div class="job-head">
-    <span><span class="job-role">English Tutor</span><span class="job-org">private practice · Pinsk, Belarus</span></span>
-    <span class="job-dates">Jun 2018 – May 2022</span>
-  </div>
-  <ul>
-    <li>Prepared <b>3 students to top places</b> in city and regional olympiads; a medic from zero to <b>86%</b> on a professional exam</li>
-  </ul>
-</div>
+var themeBtn=document.getElementById('theme-btn');
+function applyTheme(t){
+  var on=t==='light'; document.body.classList.toggle('light',on);
+  themeBtn.textContent=on?'🌙':'☀'; themeBtn.title=on?'Dark theme':'Light theme';
+  try{ localStorage.setItem('cv-theme',t); }catch(e){}
+}
+themeBtn.addEventListener('click', function(){ applyTheme(document.body.classList.contains('light')?'dark':'light'); });
 
-<div class="job">
-  <div class="job-head">
-    <span><span class="job-role">CEO Assistant</span><span class="job-org">JOY REPUBLIC · Pinsk, Belarus</span></span>
-    <span class="job-dates">May 2018 – Jul 2019</span>
-  </div>
-  <ul>
-    <li>Contracts and document flow, executive calendar, client acquisition support</li>
-  </ul>
-</div>
+// skills pills
+(function(){ var box=document.getElementById('skills');
+  SKILLS.forEach(function(s){ var el=document.createElement('span'); el.className='pill'; el.textContent=s; box.appendChild(el); });
+})();
 
-<div class="two-col">
-  <div>
-    <h2>Education</h2>
-    <div class="edu-line"><b>Stolin Agrarian &amp; Economic College</b><br>Diploma in Accounting, 2016–2019</div>
-    <div class="edu-line">Brest State A.S. Pushkin University<br>English Language Teaching (coursework 2013–2015)</div>
+(function init(){
+  var st=null, sl=null; try{ st=localStorage.getItem('cv-theme'); sl=localStorage.getItem('cv-lang'); }catch(e){}
+  applyTheme(st==='light'?'light':'dark');
+  applyLang(sl&&T[sl]?sl:'en');
+})();
+</script>
 
-    <h2>Languages</h2>
-    <p class="langs">
-      <b>English</b> — C1<br>
-      <b>Polish</b> — B2, daily language since 2022<br>
-      <b>Russian, Belarusian</b> — native
-    </p>
-  </div>
-  <div>
-    <h2>Certifications <span style="font-weight:400; text-transform:none; letter-spacing:0">(selected)</span></h2>
-    <ul>
-      <li><b>Google Project Management Professional Certificate</b> — 2026</li>
-      <li>Google Digital Marketing &amp; E-commerce series — in progress (4 courses completed, 2026)</li>
-      <li>Teaching English Online — <b>Cambridge</b> University Press &amp; Assessment, 2025</li>
-      <li>Career Essentials in Project Management — Microsoft, 2025</li>
-    </ul>
-  </div>
-</div>
-
-<h2>Skills</h2>
-<p class="skills">
-<b>Project management</b> (Agile / Scrum) · <b>stakeholder &amp; risk management</b> ·
-budgeting &amp; scheduling · Jira · Notion · Google Workspace · Microsoft 365 ·
-AI-assisted workflows (Claude Code, ChatGPT) ·
-content production EN/RU · GDPR / EU AI Act awareness
-</p>
-
-</div><!-- /sheet -->
-<script>window.goatcounter={endpoint:"https://intlady.goatcounter.com/count",path:"summary",title:"CV Tatsiana Zhukavets"}</script>
-<script async src="//gc.zgo.at/count.js"></script>
+<script>
+/* ✦ Static golden starry sky — drawn once, no animation (dark theme only) */
+(function(){
+  var c = document.getElementById('starfield'); if(!c) return;
+  var ctx = c.getContext('2d');
+  var DPR = Math.min(window.devicePixelRatio || 1, 2), W = 0, H = 0;
+  function draw(){
+    W = window.innerWidth; H = window.innerHeight;
+    c.width = W*DPR; c.height = H*DPR; c.style.width = W+'px'; c.style.height = H+'px';
+    ctx.setTransform(DPR,0,0,DPR,0,0);
+    ctx.clearRect(0,0,W,H);
+    var n = Math.round(W*H/2500);
+    for(var i=0;i<n;i++){
+      var x = Math.random()*W, y = Math.random()*H, t = Math.random();
+      var rad = t<0.80 ? Math.random()*0.7+0.35 : (t<0.96 ? Math.random()*0.6+0.9 : Math.random()*0.7+1.5);
+      var op  = t<0.80 ? Math.random()*0.30+0.12 : (t<0.96 ? Math.random()*0.30+0.38 : Math.random()*0.25+0.6);
+      ctx.beginPath(); ctx.arc(x, y, rad, 0, 6.2832);
+      ctx.fillStyle = (Math.random()<0.14) ? 'rgba(255,245,220,'+op+')' : 'rgba(244,200,108,'+op+')';
+      ctx.fill();
+    }
+  }
+  draw(); window.addEventListener('resize', draw);
+})();
+</script>
+  <script>window.goatcounter={endpoint:"https://intlady.goatcounter.com/count",path:"one-minute-cv",title:"One Minute CV"}</script>
+  <script async src="//gc.zgo.at/count.js"></script>
 </body>
 </html>
