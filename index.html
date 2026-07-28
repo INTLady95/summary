@@ -3,6 +3,9 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<!-- страница обновляется часто: браузер обязан переспросить сервер,
+     иначе гость видит вчерашнюю версию из кэша -->
+<meta http-equiv="Cache-Control" content="no-cache">
 <title>Tatsiana Zhukavets · CV</title>
 <style>
   :root{
@@ -125,6 +128,55 @@
   .sitenav .sn-go:hover{border-bottom-color:var(--gold)}
   @media(max-width:640px){ .sitenav .sn-go{margin-left:0} }
 </style>
+<script>
+/* ══ Общая тема сайта ═══════════════════════════════════════════════
+   Все страницы живут на одном домене, поэтому выбор темы хранится
+   один раз (tz-theme) и действует везде: хаб → примеры → форма заказа.
+   Порядок решения: ?theme= в адресе → общая память → старый ключ этой
+   страницы (чтобы выбор прежних гостей не потерялся) → тёмная. ══ */
+window.TZ = (function () {
+  var KEY = 'tz-theme';
+  function read(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
+  function fromUrl() {
+    try {
+      var v = new URLSearchParams(location.search).get('theme');
+      return (v === 'light' || v === 'dark') ? v : null;
+    } catch (e) { return null; }
+  }
+  return {
+    get: function (legacy) {
+      /* пришли по ссылке с темой — запоминаем сразу: дальше по сайту
+         человек идёт уже с ней, даже если ссылки без параметра */
+      var url = fromUrl();
+      if (url) { this.save(url); return url; }
+      var v = read(KEY);
+      if (v !== 'light' && v !== 'dark') {
+        var old = legacy ? read(legacy) : null;
+        if (old) v = (old === 'light' ? 'light' : 'dark');
+      }
+      return v === 'light' ? 'light' : 'dark';
+    },
+    save: function (mode) {
+      try { localStorage.setItem(KEY, mode === 'light' ? 'light' : 'dark'); } catch (e) {}
+    },
+    /* ?theme= из адреса убираем: тема уже применена и запомнена */
+    clean: function () {
+      try {
+        var u = new URL(location.href);
+        if (!u.searchParams.has('theme')) return;
+        u.searchParams.delete('theme');
+        history.replaceState(null, '', u.pathname + (u.search || '') + u.hash);
+      } catch (e) {}
+    },
+    /* тему переключили в соседней вкладке — подхватываем на лету */
+    follow: function (apply) {
+      window.addEventListener('storage', function (e) {
+        if (e.key === KEY && (e.newValue === 'light' || e.newValue === 'dark')) apply(e.newValue);
+      });
+    }
+  };
+})();
+</script>
 </head>
 <body>
 <canvas id="starfield" aria-hidden="true"></canvas>
@@ -355,10 +407,10 @@ function applyLang(l){
 document.querySelectorAll('.langbtn').forEach(function(b){ b.addEventListener('click', function(){ applyLang(b.getAttribute('data-lang')); }); });
 
 var themeBtn=document.getElementById('theme-btn');
-function applyTheme(t){
+function applyTheme(t, save){
   var on=t==='light'; document.body.classList.toggle('light',on);
   themeBtn.textContent=on?'🌙':'☀'; themeBtn.title=on?'Dark theme':'Light theme';
-  try{ localStorage.setItem('cv-theme',t); }catch(e){}
+  if(save!==false) window.TZ.save(on?'light':'dark');   /* тема общая на весь сайт */
 }
 themeBtn.addEventListener('click', function(){ applyTheme(document.body.classList.contains('light')?'dark':'light'); });
 
@@ -368,8 +420,10 @@ themeBtn.addEventListener('click', function(){ applyTheme(document.body.classLis
 })();
 
 (function init(){
-  var st=null, sl=null; try{ st=localStorage.getItem('cv-theme'); sl=localStorage.getItem('cv-lang'); }catch(e){}
-  applyTheme(st==='light'?'light':'dark');
+  var sl=null; try{ sl=localStorage.getItem('cv-lang'); }catch(e){}
+  applyTheme(window.TZ.get('cv-theme'), false);
+  window.TZ.clean();
+  window.TZ.follow(function(m){ applyTheme(m, false); });
   applyLang(sl&&T[sl]?sl:'en');
 })();
 </script>
